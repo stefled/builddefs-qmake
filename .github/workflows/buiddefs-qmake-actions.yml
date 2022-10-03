@@ -1,0 +1,20 @@
+name: CI
+'on': push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: mkdir -p path/to/artifact
+    - run: echo hello > path/to/artifact/world.txt
+    - uses: vimtor/action-zip@v1
+      with:
+       files: path/to/artifact/world.txt
+       recursive: true
+       dest: builddefs-qmake-package.zip
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: builddefs-qmake-package.zip
+
+    
