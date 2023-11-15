@@ -9,7 +9,7 @@ TEMPLATE = lib
 include (remaken_compiler_specs.prf)
 
 staticlib {
-    LINKMODE = static
+    LINKMODE = static 
 } else {
     LINKMODE = shared
 }
