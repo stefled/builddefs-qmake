@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run :  cd .. && zip builddefs-qmake-package.zip -r builddefs-qmake && cd -
+    - run : cd .. && zip builddefs-qmake-package.zip -r builddefs-qmake && cd -
+    - run : mv ../builddefs-qmake-package.zip . 
     - uses: actions/upload-artifact@v3
       with:
         name: builddefs-qmake-package
