@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: montudor/action-zip@v1
-        with:
+      with:
         args: zip -qq -r builddefs-qmake-package.zip ../builddefs-qmake 
     - uses: actions/upload-artifact@v3
       with:
