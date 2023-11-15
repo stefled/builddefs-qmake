@@ -5,9 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: montudor/action-zip@v1
+    - run : pwd
+    - run : ll
+    - uses: vimtor/action-zip@v1
       with:
-        args: zip -qq -r builddefs-qmake-package.zip ../builddefs-qmake 
+       files: .
+       recursive: true
+       dest: builddefs-qmake-package.zip
     - uses: actions/upload-artifact@v3
       with:
         name: builddefs-qmake-package
