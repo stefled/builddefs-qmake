@@ -5,11 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: vimtor/action-zip@v1
-      with:
-       files: .
-       recursive: true
-       dest: builddefs-qmake-package.zip
+    - uses: montudor/action-zip@v1
+        with:
+        args: zip -qq -r builddefs-qmake-package.zip ../builddefs-qmake 
     - uses: actions/upload-artifact@v3
       with:
         name: builddefs-qmake-package
