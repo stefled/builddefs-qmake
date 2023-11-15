@@ -6,11 +6,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run :  cd .. && zip builddefs-qmake-package.zip -r builddefs-qmake && cd -
-    - uses: vimtor/action-zip@v1
-      with:
-       files: .
-       recursive: true
-       dest: builddefs-qmake-package.zip
     - uses: actions/upload-artifact@v3
       with:
         name: builddefs-qmake-package
