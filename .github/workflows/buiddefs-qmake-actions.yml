@@ -1,5 +1,14 @@
 name: CI
-'on': push
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - '/releases/**'
+only:
+  - master
+  - develop
+  - /release/
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -9,7 +18,7 @@ jobs:
     #- run : cd .. && ls -l && zip builddefs-qmake-package.zip -r builddefs-qmake && cd -
     #- run : mv ../builddefs-qmake-package.zip . 
     #- run : ls -l
-    - run : cd .. 
+    - run : cd .. && cp -r builddefs-qmake/ builddefs-qmake2/ && mv builddefs-qmake2 builddefs-qmake/builddefs-qmake && cd - 
     #- run : mv ../builddefs-qmake-package.zip . 
     
     - uses: actions/upload-artifact@v3
