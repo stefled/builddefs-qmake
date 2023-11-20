@@ -9,9 +9,12 @@ jobs:
     #- run : cd .. && ls -l && zip builddefs-qmake-package.zip -r builddefs-qmake && cd -
     #- run : mv ../builddefs-qmake-package.zip . 
     #- run : ls -l
+    - run : cd .. 
+    #- run : mv ../builddefs-qmake-package.zip . 
+    
     - uses: actions/upload-artifact@v3
       with:
         name: builddefs-qmake-package
-        path: ../builddefs-qmake
+        path: builddefs-qmake
 
     
