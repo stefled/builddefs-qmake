@@ -14,7 +14,8 @@ jobs:
     #- run : cd .. && ls -l && zip builddefs-qmake-package.zip -r builddefs-qmake && cd -
     #- run : mv ../builddefs-qmake-package.zip . 
     #- run : ls -l
-    - run : cd .. && cp -r builddefs-qmake/ builddefs-qmake-package/builddefs-qmake && mv builddefs-qmake-package builddefs-qmake/builddefs-qmake-package && cd - 
+    - run : cd ..
+    - run : cd .. && mkdir builddefs-qmake-package && cp -r builddefs-qmake/ builddefs-qmake-package/builddefs-qmake && mv builddefs-qmake-package builddefs-qmake/builddefs-qmake-package && cd - 
     #- run : mv ../builddefs-qmake-package.zip . 
     
     - uses: actions/upload-artifact@v3
