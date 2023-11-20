@@ -12,6 +12,6 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: builddefs-qmake-package
-        path: builddefs-qmake
+        path: ../builddefs-qmake
 
     
