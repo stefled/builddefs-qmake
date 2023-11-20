@@ -6,12 +6,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run : ls -l
-    - run : cd .. && ls -l && zip builddefs-qmake-package.zip -r builddefs-qmake && cd -
-    - run : mv ../builddefs-qmake-package.zip . 
-    - run : ls -l
+    #- run : cd .. && ls -l && zip builddefs-qmake-package.zip -r builddefs-qmake && cd -
+    #- run : mv ../builddefs-qmake-package.zip . 
+    #- run : ls -l
     - uses: actions/upload-artifact@v3
       with:
         name: builddefs-qmake-package
-        path: builddefs-qmake-package.zip
+        path: builddefs-qmake
 
     
