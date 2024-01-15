@@ -9,22 +9,32 @@ on:
       - '[0-9]+\.[0-9]+\.[0-9]+'
       
 env: 
-  tag_version: ${{ github.ref_name == 'master' && '0.0.0' || github.ref_name }}  
+  tag_version: ${{ github.ref_name == 'master' && '4.11.0' || github.ref_name }}  
   
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - run : cd .. && mkdir builddefs-qmake-package && cp -r builddefs-qmake/ builddefs-qmake-package/builddefs-qmake && mv builddefs-qmake-package builddefs-qmake/builddefs-qmake-package && cd - 
-    - uses: actions/upload-artifact@v3
+    
+    # checkout
+    - name : checkout bd/qmake and zip for internal artefact
+      uses: actions/checkout@v3
+      run : cd .. && mkdir builddefs-qmake-package && cp -r builddefs-qmake/ builddefs-qmake-package/builddefs-qmake && mv builddefs-qmake-package builddefs-qmake/builddefs-qmake-package && cd - 
+    
+    # Internal artefact
+    - name: Internal Artefact
+      uses: actions/upload-artifact@v3
       with:
         name: builddefs-qmake-package
         path: builddefs-qmake-package
-    - run : rm -rf builddefs-qmake-package
-    - run : ls -l
-    - run : cd .. && zip -r -y builddefs-qmake/builddefs-qmake-package.zip builddefs-qmake && cd -
-    - run : ls -l
+    
+    # Remove Internal artefact
+    - name: Remove internal artefact
+      run : rm -rf builddefs-qmake-package
+    
+    # Zip results (for tag)
+    - name : zip results
+      run : cd .. && zip -r -y builddefs-qmake/builddefs-qmake-package.zip builddefs-qmake && cd -
     
     # Delete previous latest version 
     - name: delete previous latest version
@@ -34,6 +44,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         delete_release: true
     
+    # Tag current version
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
