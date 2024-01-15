@@ -23,7 +23,7 @@ jobs:
         path: builddefs-qmake-package
     - run : rm -rf builddefs-qmake-package
     - run : ls -l
-    - run : cd .. && zip -r -y buiddefs-qmake/builddefs-qmake-package.zip buiddefs-qmake && cd -
+    - run : cd .. && zip -r -y builddefs-qmake/builddefs-qmake-package.zip builddefs-qmake && cd -
     - run : ls -l
     
     # Delete previous latest version 
