@@ -16,9 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    # checkout
+    # Checkout
     - name : checkout bd/qmake and zip for internal artefact
       uses: actions/checkout@v3
+    
+    # Zip internal artefact
+    - name : Zip internal artefact
       run : cd .. && mkdir builddefs-qmake-package && cp -r builddefs-qmake/ builddefs-qmake-package/builddefs-qmake && mv builddefs-qmake-package builddefs-qmake/builddefs-qmake-package && cd - 
     
     # Internal artefact
