@@ -21,26 +21,26 @@ jobs:
       with:
         name: builddefs-qmake-package
         path: builddefs-qmake-package
-    #- run : rm -rf builddefs-qmake-package
+    - run : rm -rf builddefs-qmake-package
     - run : ls -l
-   
+    - run : cd .. && zip -r -y buiddefs-qmake/builddefs-qmake-package.zip buiddefs-qmake && cd -
+    - run : ls -l
     
-    # # Delete previous latest version 
-    # - name: delete previous latest version
-      # uses: dev-drprasad/delete-tag-and-release@v1.0
-      # with:
-        # tag_name: builddefs-qmake-${{ env.tag_version }}
-        # github_token: ${{ secrets.GITHUB_TOKEN }}
-        # delete_release: true
+    # Delete previous latest version 
+    - name: delete previous latest version
+      uses: dev-drprasad/delete-tag-and-release@v1.0
+      with:
+        tag_name: ${{ env.tag_version }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        delete_release: true
     
-    # - uses: "marvinpinto/action-automatic-releases@latest"
-      # with:
-        # repo_token: ${{ secrets.GITHUB_TOKEN }}
-        # automatic_release_tag: builddefs-qmake-${{ env.tag_version }}
-        # prerelease: true
-        # title: xpcf/${{ env.tag_version }}/win
-        # files: |
-          # xpcf_${{ env.tag_version }}_x86_64_static_release.zip
-          # xpcf_${{ env.tag_version }}_x86_64_shared_release.zip
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        automatic_release_tag: builddefs-qmake-${{ env.tag_version }}
+        prerelease: true
+        title: builddefs-qmake-${{ env.tag_version }}
+        files: |
+          builddefs-qmake-package.zip
 
     
